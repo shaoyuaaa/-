@@ -1,0 +1,710 @@
+*{
+    /* 页面初始化,清楚元素的内外边距 */
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    /* 宽度占浏览器可视区域的高度 */
+    width: 100vm;
+    background-color: #EAEAEA;
+}
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+.navbar{
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    /* 盒子阴影 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   
+}
+
+.navbar .nav{
+    width: 1200px;
+    height: 100%;
+    /* 让元素自动水平居中 */
+    margin: 0 auto;
+}
+
+.navbar .nav ul{
+    /* 相对定位 */
+    position: relative;
+    /* 弹性布局 */
+    display: flex;
+    /* 让子元素平均分配宽度 */
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+.navbar .nav ul > li{
+    width: 100%;
+    height: 100%;
+}
+
+.navbar .nav ul > li > a{
+	/* 因为a元素是行内元素 必须将其转为行内块或者块级才能设置宽度和高度 */
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navbar .nav ul > li ol{
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+	/* 让盒子先沿着y轴缩放到0 也就是隐藏了 */
+    transform: scaleY(0);
+	/* 我们需要将盒子从上面滑动下来 设置一下缩放的中心点即可 设置到最上面的中间位置 */
+    transform-origin: 50% 0;
+    /* 设置过渡 */
+    transition: all 0.6s;
+    
+}
+
+.navbar .nav ul > li ol li{
+    height: 70px;
+    border-bottom: 1px solid rgb(245, 245, 245);
+    
+}
+
+.navbar .nav ul > li ol li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 70px;
+    text-align: center;
+}
+
+.navbar .nav ul > li ol li:hover{
+    background-color: rgba(0, 0, 0, 0.03);
+   
+}
+
+.navbar .nav ul > li:hover ol{
+    transform: scaleY(1);
+}
+
+.navbar .nav ul .underline{
+    /* 绝对定位 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    height: 6px;
+    /* 设置一下盒子的左上角和右上角的圆角 */
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: #cc3333;
+    /* 加上过渡 */
+    transition: all 0.5s;
+	/* 现在有个小问题 我们一起看看 ne
+  /* 就是这个问题 这个线条有点影响鼠标移入li这个效果 */
+	/* 这个属性就可以解决这个问题 就貌似这个元素你能看见 但是鼠标是点击不到了 现在鼠标放到线条也没事了 */
+    pointer-events: none;
+}
+
+.navbar .nav ul .underline::before{
+    content: "";
+	/* 利用::before伪元素设置三角 */
+    position: absolute;
+    top: -10px;
+	/* calc方法自动计算数值 让盒子居中 */
+    left: calc(50% - 9px);
+    width: 18px;
+    height: 10px;
+	/* inherit可以继承父元素的属性值 */
+    background-color: inherit;
+/* 各位小伙伴可能对着属性比较陌生 我简单说一下这句话如何生成了三角形 这个属性可以绘制图案 polygon这个属性只需要提供最少三个点
+     就可以将三个点连接到一起 然后绘制一个图案  两个点的坐标位置(x,y) 0 100% 这个点就是说在x轴上为0px 在y轴是100% 
+     就是盒子的高度 x轴的方向是向右 y轴的方向是向下 那么我们设置了三个点 然后将三个点连起来刚好绘制出一个三角形 不明白的小伙伴可以在纸上画一下 画出来就理解了 */
+    clip-path: polygon(0 100%,50% 0,100% 100%);
+}
+
+.navbar .nav ul > li:nth-child(2):hover ~ .underline{
+    left: 240px;
+    background-color: #ff9933;
+    
+}
+
+.navbar .nav ul > li:nth-child(3):hover ~ .underline{
+    left: 480px;
+    background-color: #339933;
+    
+}
+
+.navbar .nav ul > li:nth-child(4):hover ~ .underline{
+    left: 720px;
+    background-color: #0099cc;
+}
+
+.navbar .nav ul > li:nth-child(5):hover ~ .underline{
+    left: 960px;
+    background-color: #9966cc;
+}
+
+
+.box1{
+    height: 700px;
+    width: 100%;
+    position: relative;
+    
+   
+}
+.box1 img{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+.box1 span{
+    width: 1000px;
+    height: 580px;
+    display: block;
+    text-align: left;
+    background-color: rgba(230, 109, 109,0);
+    font-weight: bold;    
+    position: absolute;
+    right: 100px;
+    top: 185px;
+z-index: -1;
+}
+.box1 h1{
+    display: block;
+    font-size: 90px;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    left: 200px;
+    top: 150px;
+}
+.box3{
+    height: 700px;
+    width: 100%;
+    background-color: green;
+   position: relative;
+   
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    /* 字体 */
+    font-family: sans-serif;
+}
+
+.container{
+    /* 相对定位 */
+    position: relative;
+    /* 背景颜色· */
+    background: #aad5f6;
+}
+
+
+
+.slide img{
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+.caption .h{
+font-size: 10px;
+font-weight: bolder;
+}
+.slide{
+    width: 100%;
+    height: 100vh;
+    /* 图像铺满整个背景区域, */
+    background-size: cover;
+    background-position: center;
+    /* 相对定位 */
+    position: relative;
+    overflow-x: hidden ;
+}
+
+
+.caption{
+    background:rgba(0, 0, 0, 0.03) ;
+    width: 65%;
+    /* 绝对定位 */
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    transform: translateY(-50%);
+    padding: 40px 0px;
+}
+.caption h1{
+    font-size: 50px;
+    margin-left: 80px;
+}
+
+.container h3{
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+    padding: 18px;
+}
+
+.container p{
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    color: #ccc;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+
+.arrow {
+    /* 绝对定位 */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transform: background 500ms;
+}
+
+.arrow img{
+    width: 50px;
+}
+
+.arrow:hover{
+    background:rgba(0, 0, 0, 0.4) ;
+}
+
+.l{
+    left: 0;
+}
+.r{
+    right: 0;
+}
+
+
+
+
+.box4{
+    height: 700px;
+    width: 100%;
+    background-color: rgb(62, 196, 216);
+    position: relative;
+   
+}
+
+
+
+
+/*                 */
+.box4{
+   
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container1 .beijing{
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+}
+.container1 .bottom{
+    position: absolute;
+    bottom: 90px;
+    font-size: 30px;
+    left: 250px;
+    
+}
+
+.container1{
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+}
+.container1 .ziti{
+display: block;
+position: absolute;
+top: 20px;
+font-size: 50px;
+left: 550px;
+}
+
+.card{
+    /* 相对定位 */
+    position: relative;
+    /* 自动放大占满剩余空间 */
+    flex: 1;
+    height: 460px;
+    margin: 0 20px;
+    /* 设置视觉距离 */
+    perspective: 1000px;
+}
+/* 投影效果 */
+.card::before{
+    content: "";
+    width: 90%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 绝对定位 */
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    /* 投影 */
+    /* box-shadow: 0 60px 12px 12px rgba(0, 0, 0, 0.4); */
+    box-shadow: 0 6px 12px 12px rgba(0, 0, 0, 0.4);
+    opacity: 1;
+    /* 设置旋转元素的基点位置 */
+    transform-origin: top center;
+    /* 设置过渡时间:时长 加速后减速 */
+    transition: 0.3s ease-in-out;
+}
+
+/* 鼠标移上,投影的变化 */
+.card:hover:before{
+    opacity: 0.5;
+    transform: rotateX(7deg) translateY(-6px) scale(1.05);
+}
+/* 封面 */
+.card-cover{
+    /* 绝对定位 */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* 溢出隐藏 */
+    overflow: hidden;
+    /* 开启3D效果 */
+    transform-style: preserve-3d;
+    /* 设置旋转元素的基点位置 */
+    transform-origin: top center;
+    /* 设置过渡 */
+    transition: transform 0.3s ease-in-out;    
+}
+
+.card-cover::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 120%;
+    /* 背景渐变(高光效果) */
+    background: linear-gradient(226deg,rgba(255,255,255,0.3) 40%,rgba(255,255,255,0) 50%,rgba(255,255,255,0) 60%);
+    /* background: linear-gradient(226deg,rgba(225,255,255,0) 40%,rgba(225,255,255,0.3) 50%,rgba(225,255,255,0) 60%,); */
+    /* 默认上移的可视化范围 */
+    transform: translateY(-100%);
+    /* 设置过渡 */
+    /* transform: transform 0.85s cubic-bezier(0.165, 0.84, 0.44, 1) ; */
+    transition: transform 0.85s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+}
+
+.card:hover .card-cover{
+    transform: rotateX(7deg) translateY(-6px);
+}
+
+.card:hover .card-cover::after{
+    transform: translateY(100%);
+}
+
+
+.box5{
+    height: 700px;
+    width: 100%;
+    background-color: rgb(255, 110, 241);
+    position: relative;
+   
+}
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --left-bg-color: rgba(87, 84, 236, 0.7);
+  --right-bg-color: rgba(43, 43, 43, 0.8);
+  --left-btn-hover-color: rgba(87, 84, 236, 1);
+  --right-btn-hover-color: rgba(28, 122, 28, 1);
+  --hover-width: 75%;
+  --other-width: 25%;
+  --speed: 1000ms;
+}
+
+
+.box5 {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+}
+
+.box5 h1 {
+  font-size: 4rem;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.box5 .btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: #fff;
+  border: #fff solid 0.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 15rem;
+  padding: 1.5rem;
+}
+
+.box5 .split.left .btn:hover {
+  background-color: var(--left-btn-hover-color);
+  border-color: var(--left-btn-hover-color);
+}
+
+.box5 .split.right .btn:hover {
+  background-color: var(--right-btn-hover-color);
+  border-color: var(--right-btn-hover-color);
+}
+
+.box5 .container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+
+.box5 .split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.box5 .split.left {
+  left: 0;
+  background: url('./img/四功五法.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box5 .split.left::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--left-bg-color);
+}
+
+.box5 .split.right {
+  right: 0;
+  background: url('./img/京剧二.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box5 .split.right::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--right-bg-color);
+}
+
+.box5.split.right,
+.box5.split.left,
+.box5.split.right::before,
+.box5.split.left::before {
+  transition: all var(--speed) ease-in-out;
+}
+
+.box5 .hover-left .left {
+  width: var(--hover-width);
+}
+
+.box5 .hover-left .right {
+  width: var(--other-width);
+}
+
+.box5 .hover-right .right {
+  width: var(--hover-width);
+}
+
+.box5 .hover-right .left {
+  width: var(--other-width);
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 2rem;
+    top: 30%;
+  }
+
+  .box5 .btn {
+    padding: 1.2rem;
+    width: 12rem;
+  }
+}
+
+
+
+
+
+.box6{
+    height: 700px;
+    width: 100%;
+    background-color: white;
+    position: relative;
+   
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-slide {
+  height: 100%;
+  width: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.left-slide > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.left-slide h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-top: -30px;
+}
+
+.right-slide {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 35%;
+  width: 65%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.right-slide > div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: #fff;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+}
+
+button:hover {
+  color: #222;
+}
+
+button:focus {
+  outline: none;
+}
+
+.slider-container .action-buttons button {
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  z-index: 100;
+}
+
+.slider-container .action-buttons .down-button {
+  transform: translateX(-100%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.slider-container .action-buttons .up-button {
+  transform: translateY(-100%);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.right-slide span{
+
+display: block;
+position: absolute;
+left: 50px;
+}
+
+.right-slide .span1{
+  display: block;
+  margin-left: 50px;
+  }
+
+.right-slide .lianpu{
+  margin-top: 10px;
+  margin-left: 45px;
+}
